@@ -27,13 +27,13 @@ public class Ghost_Stun : MonoBehaviour {
 			print("Ghost is stuned!");
 
 			other.GetComponent<Ghost_AI>().moveSpeed = 0f;
-			StartCoroutine(Wait(5));
+			StartCoroutine(Wait(5, other));
 
 		}
 	}
-	IEnumerator Wait(float time){
+	IEnumerator Wait(float time, Collider other){
 		yield return new WaitForSeconds(time);
-		ghost.GetComponent<Ghost_AI>().moveSpeed = 5f;
+		other.gameObject.GetComponent<Ghost_AI>().moveSpeed = 5f;
 		print("Ghost is unstunned");
 	}
 }
