@@ -33,7 +33,7 @@ public class Ghost_Stun : MonoBehaviour {
 	}
 	IEnumerator Wait(float time, Collider other){
 		yield return new WaitForSeconds(time);
-		other.gameObject.GetComponent<Ghost_AI>().moveSpeed = 5f;
+		other.gameObject.GetComponent<Ghost_AI>().moveSpeed = 3f;
 		print("Ghost is unstunned");
 	}
 }
