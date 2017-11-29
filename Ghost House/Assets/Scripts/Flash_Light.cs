@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class Flash_Light : MonoBehaviour {
 
@@ -10,7 +11,13 @@ public class Flash_Light : MonoBehaviour {
 
 	public int currentPower;
 
-	public Light light;
+	public int batDrainAmt;
+
+	public float batDrainDelay;
+
+	Light light;
+
+	public Text batteryText
 
 	// Use this for initialization
 	void Start () {
@@ -26,7 +33,7 @@ public class Flash_Light : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		//Toggle light on/off when L key is pressed.
-		if (Input.GetKeyUp (KeyCode.F) && lightOn) {
+		if (Input.GetKeyUp (KeyCode.F) && lightOn){
 			lightOn = false;
 			light.enabled = false;
 		}
@@ -34,6 +41,12 @@ public class Flash_Light : MonoBehaviour {
 		else if (Input.GetKeyUp (KeyCode.F) && !lightOn){
 			lightOn = true;
 			light.enabled = true;
+		}
+
+		batteryText.text = currentPower.ToString();
+
+		if(currentPower > 0){
+			startcoroutine(BatteryDrain(batDrainDelay,batDrainAmt));
 		}
 	
 	}
@@ -43,5 +56,14 @@ public class Flash_Light : MonoBehaviour {
 	public bool isLightOn(){
 		return lightOn;
 
+	}
+	IEnumerator BatteryDrain(float delay, int amount){
+		yield return new WaitForSeconds(delay);
+		currentPower -= amount;
+		if(currentPower <= 0){
+			currentPower = 0;
+			print("Battery is dead!");
+			light.enabled = false;
+		}
 	}
 }

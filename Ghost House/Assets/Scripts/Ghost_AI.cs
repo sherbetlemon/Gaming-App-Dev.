@@ -22,7 +22,7 @@ public class Ghost_AI : MonoBehaviour {
 
 	void Wander(){
 
-		transform.Translate(Vector3.forward*moveSpeed*Time.deltaTime);
+			transform.Translate(Vector3.forward*moveSpeed*Time.deltaTime);
 		int randomNum = Random.Range(0,360);
 		Vector3 fwd = transform.TransformDirection(Vector3.forward);
 		RaycastHit hit;
@@ -40,6 +40,7 @@ public class Ghost_AI : MonoBehaviour {
 
 	void Follow(){
 		transform.LookAt(target);
+		transform.Translate(Vector3.forward*moveSpeed*Time.deltaTime);
 	}
 			
 			
