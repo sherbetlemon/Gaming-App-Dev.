@@ -17,7 +17,7 @@ public class Flash_Light : MonoBehaviour {
 
 	Light light;
 
-	public Text batteryText
+	public Text batteryText;
 
 	// Use this for initialization
 	void Start () {
@@ -46,7 +46,7 @@ public class Flash_Light : MonoBehaviour {
 		batteryText.text = currentPower.ToString();
 
 		if(currentPower > 0){
-			startcoroutine(BatteryDrain(batDrainDelay,batDrainAmt));
+			StartCoroutine(BatteryDrain(batDrainDelay,batDrainAmt));
 		}
 	
 	}
