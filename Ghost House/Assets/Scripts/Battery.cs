@@ -7,8 +7,17 @@ public class Battery : MonoBehaviour {
 
 	public GameObject flashlight;
 
+	GameObject player;
+
+	int checkBat;
+
 	// Use this for initialization
 	void Start () {
+		player = GameObject.FindWithTag("Player");
+
+		flashlight = player;
+		//checkBat = flashlight.gameObject.GetComponentInChildren<Flash_Light>().currentPower;
+		print("CkBat = " + checkBat);
 	
 	}
 	
@@ -18,7 +27,7 @@ public class Battery : MonoBehaviour {
 	}
 
 	void OnCollisionEnter(Collision other){
-		if(other.gameObject.tag == "Player"){
+		if(other.gameObject.tag == "Player" && flashlight.gameObject.GetComponentInChildren<Flash_Light>().currentPower == 0){
 			flashlight.gameObject.GetComponentInChildren<Flash_Light>().currentPower = power;
 			Destroy(gameObject);
 		}
