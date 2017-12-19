@@ -18,28 +18,33 @@ public class Battery_Spawn : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	/*void Update () {
 		if(battEx == false){
-			StartCoroutine(spawnBat(spawnTime, battery));
+			//StartCoroutine(spawnBat(spawnTime, battery));
+			print("Spawn box is empty");
 		}
-		else{
-			print("Nada");
+		else if(battEx == true){
+			print("Battery has spawnd!");
 		}
-	}
+		
+	}*/
 
-	void OnTriggerEnter(Collider other){
+	void OnTriggerStay(Collider other){
+		print("Collision Detected");
 		if(other.gameObject.tag == "Battery"){
+			print("Battery is in trigger");
 			battEx = true;
 		}
-		else{
+		else if(other.gameObject == null){
 			battEx = false;
+			print("Spawn box is empty");
 		}
 	}
 
-	IEnumerator spawnBat(float time, Rigidbody bat){
+	/*IEnumerator spawnBat(float time, Rigidbody bat){
 		yield return new WaitForSeconds(time);
 		Instantiate(battery, spawnPoint.position, spawnPoint.rotation);
 		battEx = true;
 		
-	}
+	}*/
 }
